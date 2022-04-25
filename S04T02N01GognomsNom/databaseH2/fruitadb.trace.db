@@ -1,0 +1,12 @@
+2022-04-25 11:48:54 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "FRUITADB" no encontrada
+Table "FRUITADB" not found; SQL statement:
+select * from fruitadb [42102-210]
+2022-04-25 11:49:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "FRUITADB" no encontrada
+Table "FRUITADB" not found; SQL statement:
+select * from fruitadb [42102-210]
+2022-04-25 11:49:01 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "FRUITADB" no encontrada
+Table "FRUITADB" not found; SQL statement:
+select * from fruitadb [42102-210]
