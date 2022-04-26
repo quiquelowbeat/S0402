@@ -6,7 +6,7 @@ import lombok.ToString;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-
+@Getter
 @Setter
 @ToString
 @Document (collection = "llista_fruita")
@@ -17,15 +17,4 @@ public class FruitaEntity {
     private String nom;
     private int quantitatQuilos;
 
-    public String getId() {
-        return id;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public int getQuantitatQuilos() {
-        return quantitatQuilos;
-    }
 }
