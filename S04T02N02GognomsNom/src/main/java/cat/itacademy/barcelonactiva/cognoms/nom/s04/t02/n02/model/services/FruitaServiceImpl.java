@@ -15,26 +15,21 @@ public class FruitaServiceImpl implements FruitaService{
     private FruitaRepository fruitaRepository;
 
     @Override
-    public void addFruita(FruitaEntity fruita) {
-        this.fruitaRepository.save(fruita);
-        if(fruita.getNom().isEmpty() || fruita.getQuantitatQuilos() == 0){
-            this.fruitaRepository.deleteById(fruita.getId());
-            throw new RuntimeException();
-        }
+    public FruitaEntity addFruita(FruitaEntity fruita) {
+        return fruitaRepository.save(fruita);
     }
 
     @Override
-    public boolean updateFruita(FruitaEntity fruita) {
+    public FruitaEntity updateFruita(FruitaEntity fruita) {
         Optional<FruitaEntity> fruitaEntityOptional = this.fruitaRepository.findById(fruita.getId());
-        FruitaEntity fruitaUpdated;
+        FruitaEntity fruitaUpdated = null;
         if(fruitaEntityOptional.isPresent()){
             fruitaUpdated = fruitaEntityOptional.get();
             fruitaUpdated.setId(fruita.getId());
             fruitaUpdated.setNom(fruita.getNom());
             fruitaUpdated.setQuantitatQuilos(fruita.getQuantitatQuilos());
-            this.fruitaRepository.save(fruitaUpdated);
         }
-        return fruitaEntityOptional.isPresent();
+        return fruitaRepository.save(fruitaUpdated);
     }
 
     @Override
@@ -54,6 +49,6 @@ public class FruitaServiceImpl implements FruitaService{
 
     @Override
     public List<FruitaEntity> getAllFruita() {
-        return this.fruitaRepository.findAll();
+        return fruitaRepository.findAll();
     }
 }

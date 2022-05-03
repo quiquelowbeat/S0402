@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/fruita")
 @CrossOrigin(origins = "http://localhost:8083")
 public class FruitaController {
 
@@ -17,21 +18,20 @@ public class FruitaController {
     private FruitaServiceImpl fruitaService;
 
     @PostMapping("/add")
-    public ResponseEntity<HttpStatus> add(@RequestBody FruitaEntity fruita){
-        try {
-            fruitaService.addFruita(fruita);
-            return new ResponseEntity<>(HttpStatus.CREATED);
-        } catch (Exception e) {
+    public ResponseEntity<FruitaEntity> add(@RequestBody FruitaEntity fruita){
+        try{
+            return new ResponseEntity<>(fruitaService.addFruita(fruita), HttpStatus.CREATED);
+        } catch(Exception e){
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @PutMapping("/update")
-    public ResponseEntity<HttpStatus> update(@RequestBody FruitaEntity fruita){
-        if(fruitaService.updateFruita(fruita)){
-            return new ResponseEntity<>(HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    public ResponseEntity<FruitaEntity> update(@RequestBody FruitaEntity fruita){
+        try{
+            return new ResponseEntity<>(fruitaService.updateFruita(fruita), HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
     }
 

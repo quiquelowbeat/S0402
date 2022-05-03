@@ -2,6 +2,7 @@ package cat.itacademy.barcelonactiva.cognoms.nom.s04.t02.n01.controllers;
 
 import cat.itacademy.barcelonactiva.cognoms.nom.s04.t02.n01.model.domain.FruitaEntity;
 import cat.itacademy.barcelonactiva.cognoms.nom.s04.t02.n01.model.services.FruitaServiceImpl;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,27 +12,27 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:8081")
+@RequestMapping("/fruita")
 public class FruitaController {
 
     @Autowired
     private FruitaServiceImpl fruitaService;
 
     @PostMapping("/add")
-    public ResponseEntity<HttpStatus> add(@RequestBody FruitaEntity fruita){
+    public ResponseEntity<FruitaEntity> add(@RequestBody FruitaEntity fruita){
         try{
-            fruitaService.addFruita(fruita);
-            return new ResponseEntity<>(HttpStatus.CREATED);
+            return new ResponseEntity<>(fruitaService.addFruita(fruita), HttpStatus.CREATED);
         } catch(Exception e){
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @PutMapping("/update")
-    public ResponseEntity<HttpStatus> update(@RequestBody FruitaEntity fruita){
-        if(fruitaService.updateFruita(fruita)){
-            return new ResponseEntity<>(HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    public ResponseEntity<FruitaEntity> update(@RequestBody FruitaEntity fruita){
+        try{
+            return new ResponseEntity<>(fruitaService.updateFruita(fruita), HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
     }
 

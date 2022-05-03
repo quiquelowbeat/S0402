@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface FruitaService {
 
-    void addFruita(FruitaEntity fruita);
-    boolean updateFruita(FruitaEntity fruita);
+    FruitaEntity addFruita(FruitaEntity fruita);
+    FruitaEntity updateFruita(FruitaEntity fruita);
     void deleteFruitaById(int id);
     FruitaEntity getFruitaById(int id);
     List<FruitaEntity> getAllFruita();
